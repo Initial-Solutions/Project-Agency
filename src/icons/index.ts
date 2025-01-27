@@ -1,0 +1,12 @@
+export { default as Docker } from './svg.docker';
+export { default as Express } from './svg.express';
+export { default as Motion } from './svg.motion';
+export { default as Nestjs } from './svg.nestjs';
+export { default as Nextjs } from './svg.nextjs';
+export { default as Nodejs } from './svg.nodejs';
+export { default as Postgres } from './svg.postgres';
+export { default as Prisma } from './svg.prisma';
+export { default as React } from './svg.react';
+export { default as ReactQuery } from './svg.ReactQuery';
+export { default as TanStack } from './svg.tanstack';
+export { default as Vite } from './svg.vite';

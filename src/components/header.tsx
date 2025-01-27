@@ -6,14 +6,14 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 w-full px-6 py-4 flex justify-between items-center backdrop-blur-md bg-black/30 z-[999]">
+    <nav className="sticky top-0 w-full px-6 md:px-36 py-4 flex justify-between items-center backdrop-blur-md bg-black/30 z-[999]">
       <div className="absolute bottom-0 left-0 right-0 h-[1px]">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
       </div>
 
       <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
-        Initial Solutions
+        InitialSolutions
       </span>
       <div className="lg:hidden flex gap-4">
         <RainbowButton className="h-8 w-full text-sm bg-[linear-gradient(#ffffff,#ffffff),linear-gradient(#ffffff_50%,rgba(255,255,255,0.6)_80%,rgba(255,255,255,0)),linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] text-black">
