@@ -2,7 +2,7 @@ import { RainbowButton } from './ui/rainbow-button';
 
 export function Header() {
   return (
-    <nav className="relative z-50 flex w-full items-center justify-between bg-black/30 px-6 py-4 backdrop-blur-md">
+    <nav className="sticky top-0 z-[100] flex w-full items-center justify-between bg-black/30 px-6 py-4 backdrop-blur-md">
       <div className="absolute bottom-0 left-0 right-0 h-[1px]">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
