@@ -71,11 +71,11 @@ export function Contact() {
   return (
     <section
       className={
-        'flex flex-col items-center justify-center gap-24 bg-black px-32 pb-24 pt-12'
+        'flex flex-col items-center justify-center gap-24 bg-black px-8 pb-24 pt-12 md:px-32'
       }
     >
-      <div className={'flex w-full justify-center gap-8'}>
-        <div className={'flex w-1/3 flex-col gap-2'}>
+      <div className={'flex w-full flex-col justify-center gap-8 md:flex-row'}>
+        <div className={'flex flex-col gap-2 md:w-1/3'}>
           <h2 className={'text-xl font-semibold italic text-white'}>
             Contact us to get your project started !
           </h2>
@@ -88,7 +88,7 @@ export function Contact() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className={'grid grow grid-cols-1 gap-4 md:grid-cols-2'}
+            className={'flex grow flex-col gap-4 md:grid md:grid-cols-2'}
           >
             <FormField
               name={'name'}
@@ -163,7 +163,11 @@ export function Contact() {
                 </FormItem>
               )}
             />
-            <Button variant={'default'} className={'mt-2'} type={'submit'}>
+            <Button
+              variant={'default'}
+              className={'mt-2 w-full'}
+              type={'submit'}
+            >
               Submit
             </Button>
           </form>
