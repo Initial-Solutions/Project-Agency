@@ -38,7 +38,7 @@ export function Contact() {
     defaultValues: {
       name: '',
       email: '',
-      interest: 'Corporate Website',
+      interest: '',
       phone: '',
       message: '',
     },
@@ -125,7 +125,7 @@ export function Contact() {
                       value={field.value}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder={'Select project type'} />
+                        <SelectValue placeholder={'Select a project type'} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value={'Corporate Website'}>
