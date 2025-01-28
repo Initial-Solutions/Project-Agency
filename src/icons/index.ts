@@ -7,6 +7,6 @@ export { default as Nodejs } from './svg.nodejs';
 export { default as Postgres } from './svg.postgres';
 export { default as Prisma } from './svg.prisma';
 export { default as React } from './svg.react';
-export { default as ReactQuery } from './svg.ReactQuery';
+export { default as ReactQuery } from './svg.reactQuery';
 export { default as TanStack } from './svg.tanstack';
 export { default as Vite } from './svg.vite';
