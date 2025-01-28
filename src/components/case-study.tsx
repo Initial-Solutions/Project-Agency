@@ -1,8 +1,17 @@
 // Base styles for media player and provider (~400B).
 import '@vidstack/react/player/styles/base.css';
 import { MediaPlayer, MediaProvider } from '@vidstack/react';
-import { React, Nodejs, TanStack, Prisma } from '@/icons';
+import {
+  React,
+  Nodejs,
+  TanStack,
+  Prisma,
+  Tailwindcss,
+  Vidstack,
+} from '@/icons';
 import { useState } from 'react';
+import BorderFade from './border-fade';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 type TechStack = {
   name: string;
@@ -30,15 +39,121 @@ interface VideoSectionProps {
   project: Project;
 }
 
-const CaseStudy = () => {
-  const [openStacks, setOpenStacks] = useState<{ [key: number]: boolean }>({});
+const ContentSection: React.FC<ContentSectionProps> = ({ project }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleStack = (projectId: number): void => {
-    setOpenStacks((prev) => ({
-      ...prev,
-      [projectId]: !prev[projectId],
-    }));
-  };
+  return (
+    <div
+      className={`flex flex-col space-y-6 ${
+        project.textAlign === 'center'
+          ? 'items-center text-center'
+          : project.textAlign === 'right'
+            ? 'items-end text-right'
+            : 'items-start text-left'
+      }`}
+    >
+      <small className="text-xs font-semibold uppercase tracking-wide text-blue-400">
+        {project.theme}
+      </small>
+
+      <h2 className="text-4xl font-bold text-white">{project.title}</h2>
+
+      <p className="max-w-2xl text-lg leading-relaxed text-gray-400">
+        {project.description}
+      </p>
+
+      <div
+        className={`flex space-x-4 ${
+          project.textAlign === 'center'
+            ? 'justify-center'
+            : project.textAlign === 'right'
+              ? 'justify-end'
+              : 'justify-start'
+        }`}
+      >
+        {project.showPrice && (
+          <button className="flex items-center rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700">
+            Get Access - ${project.price} USD
+          </button>
+        )}
+        <button className="rounded-lg border border-zinc-600 px-6 py-3 font-medium text-zinc-100 transition-colors hover:border-zinc-400">
+          Live Preview
+        </button>
+      </div>
+
+      <div
+        className={
+          project.textAlign === 'center'
+            ? 'flex w-full flex-col items-center'
+            : ''
+        }
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-300 ${
+            project.textAlign === 'center'
+              ? 'justify-center'
+              : project.textAlign === 'right'
+                ? 'ml-auto'
+                : ''
+          }`}
+        >
+          <span>Stack for nerds</span>
+          <span
+            className={`text-xs transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          >
+            ↓
+          </span>
+        </button>
+
+        <div
+          className={`h-12 pt-2 ${
+            isOpen ? 'visible opacity-100' : 'invisible opacity-0'
+          } transition-all duration-300`}
+        >
+          <div className="overflow-hidden">
+            <div
+              className={`flex space-x-4 ${
+                project.textAlign === 'center'
+                  ? 'justify-center'
+                  : project.textAlign === 'right'
+                    ? 'justify-end'
+                    : 'justify-start'
+              }`}
+            >
+              {project.stack.map((tech, i) => (
+                <div key={i} className="text-zinc-400 hover:text-white">
+                  <tech.icon className="h-8 w-8 object-contain grayscale transition-all duration-200 hover:grayscale-0" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const VideoSection: React.FC<VideoSectionProps> = ({ project }) => (
+  <div className="group relative">
+    <MediaPlayer
+      className="aspect-video w-full transform overflow-hidden rounded-lg shadow-2xl transition-transform group-hover:scale-[1.02]"
+      title={project.title}
+      src={project.videoUrl}
+      controls={false}
+      autoPlay
+      muted
+      crossOrigin
+      playsInline
+      loop
+    >
+      <MediaProvider />
+    </MediaPlayer>
+  </div>
+);
+
+const CaseStudy = () => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const projects: Project[] = [
     {
@@ -67,135 +182,23 @@ const CaseStudy = () => {
         'A highly optimized React video player library with extensive customization options. Built for developers who need a powerful, feature-rich video player with pre-built themes and components. Perfect for creating custom video experiences with minimal effort.',
       price: 29,
       showPrice: false,
-      mirror: true,
-      textAlign: 'right',
+      mirror: isDesktop ? true : false,
+      textAlign: isDesktop ? 'right' : 'left',
       stack: [
         { name: 'React', icon: React },
-        { name: 'TanStack', icon: TanStack },
+        { name: 'Tailwindcss', icon: Tailwindcss },
+        { name: 'Vidstack', icon: Vidstack },
       ],
       videoUrl: 'youtube/bpi2escGj2Q',
     },
   ];
 
-  const ContentSection: React.FC<ContentSectionProps> = ({ project }) => (
-    <div
-      className={`flex flex-col space-y-6 ${
-        project.textAlign === 'center'
-          ? 'items-center text-center'
-          : project.textAlign === 'right'
-            ? 'items-end text-right'
-            : 'items-start text-left'
-      }`}
-    >
-      <small className="text-xs font-semibold text-blue-400 uppercase tracking-wide">
-        {project.theme}
-      </small>
-
-      <h2 className="text-4xl font-bold text-white">{project.title}</h2>
-
-      <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
-        {project.description}
-      </p>
-
-      <div
-        className={`flex space-x-4 ${
-          project.textAlign === 'center'
-            ? 'justify-center'
-            : project.textAlign === 'right'
-              ? 'justify-end'
-              : 'justify-start'
-        }`}
-      >
-        {project.showPrice && (
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
-            Get Access - ${project.price} USD
-          </button>
-        )}
-        <button className="border border-zinc-600 hover:border-zinc-400 text-zinc-100 px-6 py-3 rounded-lg font-medium transition-colors">
-          Live Preview
-        </button>
-      </div>
-
-      <div
-        className={
-          project.textAlign === 'center'
-            ? 'flex flex-col items-center w-full'
-            : ''
-        }
-      >
-        <button
-          onClick={() => toggleStack(project.id)}
-          className={`text-sm font-medium text-zinc-400 hover:text-zinc-300 transition-colors flex items-center gap-2 ${
-            project.textAlign === 'center'
-              ? 'justify-center'
-              : project.textAlign === 'right'
-                ? 'ml-auto'
-                : ''
-          }`}
-        >
-          <span>Stack for nerds</span>
-          <span
-            className={`text-xs transition-transform duration-300 ${
-              openStacks[project.id] ? 'rotate-180' : ''
-            }`}
-          >
-            ↓
-          </span>
-        </button>
-
-        <div
-          className={`grid transition-all duration-300 ease-out ${
-            openStacks[project.id]
-              ? 'grid-rows-[1fr] opacity-100 mt-3'
-              : 'grid-rows-[0fr] opacity-0'
-          }`}
-        >
-          <div className="overflow-hidden">
-            <div
-              className={`flex space-x-4 ${
-                project.textAlign === 'center'
-                  ? 'justify-center'
-                  : project.textAlign === 'right'
-                    ? 'justify-end'
-                    : 'justify-start'
-              }`}
-            >
-              {project.stack.map((tech, i) => (
-                <div key={i} className="text-zinc-400 hover:text-white">
-                  <tech.icon className="h-8 w-8 object-contain transition-all duration-200 grayscale hover:grayscale-0" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const VideoSection: React.FC<VideoSectionProps> = ({ project }) => (
-    <div className="relative group">
-      <MediaPlayer
-        className="rounded-lg aspect-video w-full overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform"
-        title={project.title}
-        src={project.videoUrl}
-        controls={false}
-        autoPlay
-        muted
-        crossOrigin
-        playsInline
-        loop
-      >
-        <MediaProvider />
-      </MediaPlayer>
-    </div>
-  );
-
   return (
-    <div className="px-6 md:px-36 pt-32">
+    <div className="relative h-full w-full bg-black px-6 pb-10 pt-32 md:px-12 xl:px-36">
       {projects.map((project, index) => (
         <div
           key={index}
-          className={`grid md:grid-cols-2 gap-12 mb-20 ${
+          className={`mb-20 grid gap-12 md:grid-cols-2 ${
             project.mirror
               ? 'md:[grid-template-columns:1.2fr_0.8fr]'
               : 'md:[grid-template-columns:0.8fr_1.2fr]'
@@ -214,6 +217,7 @@ const CaseStudy = () => {
           )}
         </div>
       ))}
+      <BorderFade />
     </div>
   );
 };

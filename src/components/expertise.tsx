@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Particles } from '@/components/ui/particles.tsx';
 import { useIsMobileDevice } from '@/hooks/useIsMobileDevice.ts';
+import BorderFade from './border-fade';
 
 export function Expertise() {
   const [expertises, dispatch] = useReducer(reducer, expertisesValues);
@@ -32,11 +33,7 @@ export function Expertise() {
   };
 
   return (
-    <section className={'relative bg-black px-8'}>
-      <div className="top absolute left-0 right-0 h-[1px]">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
-      </div>
+    <section className={'relative bg-zinc-950 px-8'}>
       <div
         className={
           'flex flex-col items-center gap-24 py-24 font-bold md:gap-32 md:py-32'
@@ -110,6 +107,7 @@ export function Expertise() {
           })}
         </div>
       </div>
+      <BorderFade />
     </section>
   );
 }

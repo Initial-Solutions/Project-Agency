@@ -10,3 +10,5 @@ export { default as React } from './svg.react';
 export { default as ReactQuery } from './svg.reactQuery';
 export { default as TanStack } from './svg.tanstack';
 export { default as Vite } from './svg.vite';
+export { default as Tailwindcss } from './svg.tailwindcss';
+export { default as Vidstack } from './svg.vidstack';
