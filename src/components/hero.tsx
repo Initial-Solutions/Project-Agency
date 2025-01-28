@@ -18,7 +18,6 @@ export function Hero() {
           '[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] opacity-20'
         )}
       />
-
       <div className="flex-1 min-h-96 md:min-h-[800px] flex items-center justify-center relative z-50 py-8">
         <div className="text-center px-4 space-y-4 md:space-y-6 w-full">
           <div className="flex flex-col space-y-4 md:space-y-6">
@@ -55,12 +54,16 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <div className="relative z-50 bg-zinc-950 ">
+      <div className="relative z-50 bg-zinc-950">
         <div className="absolute top-0 left-0 right-0 h-[1px]">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
         </div>
         <Brands />
+        <div className="absolute bottom-0 left-0 right-0 h-[1px]">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
+        </div>
       </div>
     </div>
   );
