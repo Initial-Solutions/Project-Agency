@@ -38,7 +38,6 @@ export function Contact() {
     defaultValues: {
       name: '',
       email: '',
-      interest: '',
       phone: '',
       message: '',
     },
