@@ -32,7 +32,7 @@ export function Expertise() {
   };
 
   return (
-    <div className={'relative bg-black px-8'}>
+    <section className={'relative bg-black px-8'}>
       <div className="top absolute left-0 right-0 h-[1px]">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
@@ -53,6 +53,7 @@ export function Expertise() {
           {expertises.map((expertise, index) => {
             return (
               <div
+                key={index}
                 className={'aspect-video grow md:aspect-square lg:aspect-video'}
                 onMouseEnter={() => dispatch({ type: ACTIONS.HOVER, index })}
                 onMouseLeave={() => dispatch({ type: ACTIONS.LEAVE })}
@@ -109,7 +110,7 @@ export function Expertise() {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
