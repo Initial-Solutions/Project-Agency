@@ -23,7 +23,3 @@ Thumbs.db
 .env.test.local
 .env.production.local
 
-# Package lock
-package-lock.json
-yarn.lock
-
