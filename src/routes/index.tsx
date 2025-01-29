@@ -3,6 +3,7 @@ import { Hero } from '@/components/hero.tsx';
 import CaseStudy from '@/components/case-study';
 import { Expertise } from '@/components/expertise.tsx';
 import { Contact } from '@/components/contact.tsx';
+import { Footer } from '@/components/footer.tsx';
 
 export const Route = createFileRoute('/')({
   component: Index,
@@ -15,6 +16,7 @@ function Index() {
       <CaseStudy />
       <Expertise />
       <Contact />
+      <Footer />
     </>
   );
 }

@@ -165,7 +165,7 @@ const expertisesValues = [
     hovered: false,
   },
   {
-    title: 'SaaS PLATFORM',
+    title: 'MVP DEVELOPMENT',
     description: 'Driving product value to capture your market.',
     icon: <HammerIcon className={'h-6 w-6 md:h-8 md:w-8'} />,
     hovered: false,
