@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/select.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import BorderFade from '@/components/border-fade.tsx';
 
 const formSchema = z.object({
   name: z.string().nonempty(),
@@ -70,8 +71,9 @@ export function Contact() {
   return (
     <section
       className={
-        'flex flex-col items-center justify-center gap-24 bg-black px-8 pb-24 pt-12 md:px-32'
+        'relative flex flex-col items-center justify-center gap-24 bg-black px-8 pb-24 pt-12 md:px-32 md:py-44'
       }
+      id={'contact'}
     >
       <div className={'flex w-full flex-col justify-center gap-8 md:flex-row'}>
         <div className={'flex flex-col gap-2 md:w-1/3'}>
@@ -172,6 +174,7 @@ export function Contact() {
           </form>
         </Form>
       </div>
+      <BorderFade />
     </section>
   );
 }

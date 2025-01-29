@@ -2,11 +2,11 @@
 import '@vidstack/react/player/styles/base.css';
 import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import {
-  React,
   Nodejs,
-  TanStack,
   Prisma,
+  React,
   Tailwindcss,
+  TanStack,
   Vidstack,
 } from '@/icons';
 import { useState } from 'react';
@@ -51,6 +51,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ project }) => {
             ? 'items-end text-right'
             : 'items-start text-left'
       }`}
+      id={'case-study'}
     >
       <small className="text-xs font-semibold uppercase tracking-wide text-blue-400">
         {project.theme}
@@ -194,11 +195,11 @@ const CaseStudy = () => {
   ];
 
   return (
-    <div className="relative h-full w-full bg-black px-6 pb-10 pt-32 md:px-12 xl:px-36">
+    <div className="relative h-full w-full bg-zinc-950 px-6 pb-10 pt-32 md:px-12 md:pt-44 xl:px-36">
       {projects.map((project, index) => (
         <div
           key={index}
-          className={`mb-20 grid gap-12 md:grid-cols-2 ${
+          className={`mb-44 grid gap-12 md:grid-cols-2 ${
             project.mirror
               ? 'md:[grid-template-columns:1.2fr_0.8fr]'
               : 'md:[grid-template-columns:0.8fr_1.2fr]'

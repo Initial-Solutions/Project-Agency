@@ -13,8 +13,8 @@ function Index() {
   return (
     <>
       <Hero />
-      <CaseStudy />
       <Expertise />
+      <CaseStudy />
       <Contact />
       <Footer />
     </>

@@ -33,10 +33,10 @@ export function Expertise() {
   };
 
   return (
-    <section className={'relative bg-zinc-950 px-8'}>
+    <section className={'relative bg-black px-8'} id={'our-expertise'}>
       <div
         className={
-          'flex flex-col items-center gap-24 py-24 font-bold md:gap-32 md:py-32'
+          'flex flex-col items-center gap-24 py-24 font-bold md:gap-32 md:py-44 md:pb-52'
         }
       >
         <h2 className={'text-2xl font-bold'} id={'our-expertise'}>
