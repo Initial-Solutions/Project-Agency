@@ -1,31 +1,52 @@
 import { RainbowButton } from './ui/rainbow-button';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Button } from '@/components/ui/button.tsx';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const scrollToTarget = (target: string, document: Document) => {
+    const targetElement = document.querySelector(`#${target}`);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const scrollToTop = (document: Document) => {
+    const targetElement = document.querySelector('html');
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
-    <nav className="sticky top-0 w-full px-6 md:px-36 py-4 flex justify-between items-center backdrop-blur-md bg-black/30 z-[999]">
+    <nav className="fixed top-0 z-[999] flex w-full items-center justify-between bg-black/30 px-6 py-4 backdrop-blur-md md:px-36">
       <div className="absolute bottom-0 left-0 right-0 h-[1px]">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
       </div>
 
-      <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text">
+      <span
+        onClick={() => scrollToTop(document)}
+        className="cursor-pointer bg-gradient-to-r from-white to-gray-300 bg-clip-text text-xl font-bold text-transparent"
+      >
         InitialSolutions
       </span>
-      <div className="lg:hidden flex gap-4">
-        <RainbowButton className="h-8 w-full text-sm bg-[linear-gradient(#ffffff,#ffffff),linear-gradient(#ffffff_50%,rgba(255,255,255,0.6)_80%,rgba(255,255,255,0)),linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] text-black">
+      <div className="flex gap-4 lg:hidden">
+        <RainbowButton
+          onClick={() => scrollToTarget('contact', document)}
+          className="h-8 w-full bg-[linear-gradient(#ffffff,#ffffff),linear-gradient(#ffffff_50%,rgba(255,255,255,0.6)_80%,rgba(255,255,255,0)),linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] text-sm text-black"
+        >
           Let's talk!
         </RainbowButton>
         {/* Menu burger pour mobile */}
         <button
-          className=" text-white"
+          className="text-white"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -50,16 +71,28 @@ export function Header() {
       </div>
 
       {/* Navigation desktop */}
-      <div className="hidden lg:flex gap-8 text-sm text-gray-400">
-        <a href="#" className="hover:text-white transition-colors">
+      <div className="hidden gap-2 text-sm text-gray-400 lg:flex">
+        {/*<Button
+          variant={'ghost'}
+          onClick={() => scrollToTarget('our-vision', document)}
+          className="transition-colors hover:text-white"
+        >
           Our vision
-        </a>
-        <a href="#" className="hover:text-white transition-colors">
+        </Button>*/}
+        <Button
+          variant={'ghost'}
+          onClick={() => scrollToTarget('our-expertise', document)}
+          className="transition-colors hover:text-white"
+        >
           Our expertise
-        </a>
-        <a href="#" className="hover:text-white transition-colors">
+        </Button>
+        <Button
+          variant={'ghost'}
+          onClick={() => scrollToTarget('case-study', document)}
+          className="transition-colors hover:text-white"
+        >
           Case study
-        </a>
+        </Button>
       </div>
 
       {/* Navigation mobile */}
@@ -70,28 +103,28 @@ export function Header() {
             animate={{ scale: 1, borderRadius: '0%', opacity: 1 }}
             exit={{ scale: 0, borderRadius: '100%', opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="absolute top-full right-0 w-full px-4 lg:hidden origin-top-right z-[999999] rounded-bl-2xl"
+            className="absolute right-0 top-full z-[999999] w-full origin-top-right rounded-bl-2xl px-4 lg:hidden"
           >
-            <div className="flex flex-col bg-black/80 backdrop-blur-md rounded-b-md items-start p-6 gap-6 text-sm text-gray-400 relative">
+            <div className="relative flex flex-col items-start gap-6 rounded-b-md bg-black/80 p-6 text-sm text-gray-400 backdrop-blur-md">
               <div className="absolute bottom-0 left-0 right-0 h-[1px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-zinc-100/20 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-l from-transparent via-zinc-100/20 to-transparent opacity-50" />
               </div>
-              <motion.a
+              {/*<motion.a
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
                 href="#"
-                className="hover:text-white transition-colors"
+                className="transition-colors hover:text-white"
               >
                 Our vision
-              </motion.a>
+              </motion.a>*/}
               <motion.a
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                href="#"
-                className="hover:text-white transition-colors"
+                onClick={() => scrollToTarget('our-expertise', document)}
+                className="cursor-pointer transition-colors hover:text-white"
               >
                 Our expertise
               </motion.a>
@@ -99,8 +132,8 @@ export function Header() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                href="#"
-                className="hover:text-white transition-colors"
+                onClick={() => scrollToTarget('case-study', document)}
+                className="cursor-pointer transition-colors hover:text-white"
               >
                 Case study
               </motion.a>
@@ -109,7 +142,10 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      <RainbowButton className="hidden lg:inline-flex h-8 px-6 text-sm bg-[linear-gradient(#ffffff,#ffffff),linear-gradient(#ffffff_50%,rgba(255,255,255,0.6)_80%,rgba(255,255,255,0)),linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] text-black">
+      <RainbowButton
+        onClick={() => scrollToTarget('contact', document)}
+        className="hidden h-8 bg-[linear-gradient(#ffffff,#ffffff),linear-gradient(#ffffff_50%,rgba(255,255,255,0.6)_80%,rgba(255,255,255,0)),linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] px-6 text-sm text-black lg:inline-flex"
+      >
         Let's talk!
       </RainbowButton>
     </nav>
